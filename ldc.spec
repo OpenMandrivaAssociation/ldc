@@ -26,6 +26,7 @@ License: BSD-3-clause and GPL and LLVM and Boost
 Group: Development/Tools
 BuildRequires: cmake ninja
 BuildRequires: cmake(LLVM)
+BuildRequires: llvm-static-devel
 Requires: %{mklibname druntime-ldc-debug-shared} = %{EVRD}
 Requires: %{mklibname druntime-ldc-shared} = %{EVRD}
 Requires: %{mklibname phobos2-ldc-debug-shared} = %{EVRD}
