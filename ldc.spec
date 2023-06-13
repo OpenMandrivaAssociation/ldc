@@ -28,6 +28,7 @@ BuildRequires: cmake ninja
 BuildRequires: cmake(LLVM)
 BuildRequires: llvm-static-devel
 BuildRequires: pkgconfig(libzstd)
+BuildRequires: pkgconfig(bash-completion)
 Requires: %{mklibname druntime-ldc-debug-shared} = %{EVRD}
 Requires: %{mklibname druntime-ldc-shared} = %{EVRD}
 Requires: %{mklibname phobos2-ldc-debug-shared} = %{EVRD}
