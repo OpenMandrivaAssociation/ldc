@@ -1,0 +1,5 @@
+sources:
+  ldc-1.32.2-src.tar.gz: b9f80b7e7c067376c51a5c5ed68f8c602746373c
+  ldc-1.33.0-beta2-src.tar.gz: 3bd87c47ff9648ec690b24ee2a58fd01a157ba90
+  ldc2-1.33.0-beta2-linux-aarch64.tar.xz: fe52fffc0716ef6130c676f1bd877983078a9aed
+  ldc2-1.33.0-beta2-linux-x86_64.tar.xz: 819d293856b873a50f0e4ce7ec0c7c0e97cbe7e3
