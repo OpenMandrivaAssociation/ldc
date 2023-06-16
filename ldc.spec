@@ -9,7 +9,7 @@
 
 Name: ldc
 Version: 1.33.0
-Release: 1
+Release: %{?beta:0.%{beta}.}1
 Source0: https://github.com/ldc-developers/ldc/releases/download/v%{version}%{?beta:-%{beta}}/ldc-%{version}%{?beta:-%{beta}}-src.tar.gz
 # Unfortunately all D compilers currently in existence require a
 # D compiler to build -- so we have to start with downloading a
@@ -32,7 +32,7 @@ BuildRequires: pkgconfig(bash-completion)
 Requires: %{mklibname druntime-ldc-debug-shared} = %{EVRD}
 Requires: %{mklibname druntime-ldc-shared} = %{EVRD}
 Requires: %{mklibname phobos2-ldc-debug-shared} = %{EVRD}
-Requires: %{mklibname phonos2-ldc-shared} = %{EVRD}
+Requires: %{mklibname phobos2-ldc-shared} = %{EVRD}
 
 %libpackage druntime-ldc-debug-shared 103
 %libpackage druntime-ldc-shared 103
