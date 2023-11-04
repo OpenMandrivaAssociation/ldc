@@ -5,10 +5,10 @@
 # enabled bootstrap compiler.
 %define _disable_lto 1
 
-%define beta beta2
+#define beta beta2
 
 Name: ldc
-Version: 1.33.0
+Version: 1.35.0
 Release: %{?beta:0.%{beta}.}1
 Source0: https://github.com/ldc-developers/ldc/releases/download/v%{version}%{?beta:-%{beta}}/ldc-%{version}%{?beta:-%{beta}}-src.tar.gz
 # Unfortunately all D compilers currently in existence require a
@@ -17,7 +17,9 @@ Source0: https://github.com/ldc-developers/ldc/releases/download/v%{version}%{?b
 Source1: https://github.com/ldc-developers/ldc/releases/download/v%{version}%{?beta:-%{beta}}/ldc2-%{version}%{?beta:-%{beta}}-linux-x86_64.tar.xz
 Source2: https://github.com/ldc-developers/ldc/releases/download/v%{version}%{?beta:-%{beta}}/ldc2-%{version}%{?beta:-%{beta}}-linux-aarch64.tar.xz
 # LLVM 16 support
-Patch0: https://github.com/ldc-developers/ldc/pull/4411.patch
+#Patch0: https://github.com/ldc-developers/ldc/pull/4411.patch
+# LLVM 17 support
+Patch0:	ldc-1.35.0--port_to_llvm17.patch
 # Link -lzstd, needed implicitly by LLVM libs
 Patch1: ldc-1.33-linkage.patch
 Summary: LDC - the LLVM based D Compiler
