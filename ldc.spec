@@ -5,7 +5,7 @@
 # enabled bootstrap compiler.
 #define _disable_lto 1
 
-%bcond_without	bootstrap
+%bcond_with	bootstrap
 
 %define beta beta1
 %define snapshot 20231204
@@ -13,7 +13,7 @@
 
 Name: ldc
 Version: 1.36.0
-Release: %{?beta:0.%{beta}.}1
+Release: %{?beta:0.%{beta}.}2
 Source0: https://github.com/ldc-developers/ldc/releases/download/v%{version}%{?beta:-%{beta}}/ldc-%{version}%{?beta:-%{beta}}-src.tar.gz
 #Source0: https://github.com/ldc-developers/ldc/archive/%{?snapshot:master}%{!?snapshot:v%{version}}/%{name}-%{?snapshot:master}%{!?snapshot:%{version}}-src.tar.gz
 #Source0: https://github.com/JohanEngelen/ldc/archive/%{?snapshot:%{commit}}%{!?snapshot:v%{version}}/%{name}-%{?snapshot:%{commit}}%{!?snapshot:%{version}}-src.tar.gz
