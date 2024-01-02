@@ -34,6 +34,9 @@ License: BSD-3-clause and GPL and LLVM and Boost
 Group: Development/Tools
 BuildRequires: cmake ninja
 BuildRequires: cmake(LLVM)
+%if %{without bootstrap}
+BuildRequires: ldc
+%endif
 BuildRequires: llvm-static-devel
 BuildRequires: pkgconfig(libzstd)
 BuildRequires: pkgconfig(bash-completion)
