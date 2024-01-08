@@ -1,4 +1,4 @@
 sources:
-  ldc-1.36.0-beta1-src.tar.gz: d508847fc9e10c317529d9b8d5cf235eae3411c1
-  ldc2-1.36.0-beta1-linux-aarch64.tar.xz: 994cb59d27f21723d57f1ea6d07b8b81afcc504e
-  ldc2-1.36.0-beta1-linux-x86_64.tar.xz: 81de0c6dbd652bd629b0da3bad3df822e28ca309
+  ldc-1.36.0-src.tar.gz: b8bfa29ec28e5e81e62c799b94ad4ac4b966a2cc
+  ldc2-1.36.0-linux-aarch64.tar.xz: cea2b1d3a65bd7cb02f3ab9403ddeb977ec253ab
+  ldc2-1.36.0-linux-x86_64.tar.xz: a95dbfe6e671e93496df5cfd08b76c94edd55a3d
