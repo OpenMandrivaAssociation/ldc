@@ -1,31 +1,18 @@
-# FIXME This is needed because the bootstrap compiler
-# is built against LLVM 15 and therefore can't read
-# LLVM 16 bitcode files.
-# We can enable LTO once we switch to an LLVM 16
-# enabled bootstrap compiler.
-#define _disable_lto 1
-
 %bcond_without	bootstrap
 
 Summary: LDC - the LLVM based D Compiler
 Name:		ldc
 Version:	1.36.0
 Release:	3
+License:	BSD-3-clause and GPL and LLVM and Boost
+Group:		Development/Tools
+URL:		https://github.com/ldc/ldc
 Source0:	https://github.com/ldc-developers/ldc/releases/download/v%{version}/ldc-%{version}-src.tar.gz
 # Unfortunately all D compilers currently in existence require a
 # D compiler to build -- so we have to start with downloading a
 # prebuilt binary.
 Source1:	https://github.com/ldc-developers/ldc/releases/download/v%{version}/ldc2-%{version}-linux-x86_64.tar.xz
 Source2:	https://github.com/ldc-developers/ldc/releases/download/v%{version}/ldc2-%{version}-linux-aarch64.tar.xz
-# LLVM 16 support
-#Patch0: https://github.com/ldc-developers/ldc/pull/4411.patch
-# LLVM 17 support
-#Patch0:	ldc-1.35.0-port_to_llvm17.patch
-# Link -lzstd, needed implicitly by LLVM libs
-#Patch1: ldc-1.33-linkage.patch
-URL:		https://github.com/ldc/ldc
-License:	BSD-3-clause and GPL and LLVM and Boost
-Group:		Development/Tools
 BuildRequires:	cmake ninja
 BuildRequires:	cmake(LLVM)
 %if %{without bootstrap}
@@ -34,6 +21,7 @@ BuildRequires:	ldc
 BuildRequires:	llvm-static-devel
 BuildRequires:	pkgconfig(libzstd)
 BuildRequires:	pkgconfig(bash-completion)
+
 Requires:	%{mklibname druntime-ldc-debug-shared} = %{EVRD}
 Requires:	%{mklibname druntime-ldc-shared} = %{EVRD}
 Requires:	%{mklibname phobos2-ldc-debug-shared} = %{EVRD}
@@ -68,7 +56,7 @@ An LLVM based compiler for the D programming language.
 #---------------------------------------------------------------------------
 
 %prep
-%autosetup -p1 -n %{name}-%{version}%{?beta:-%{beta}}-src
+%autosetup -p1 -n %{name}-%{version}-src
 
 %build
 # Unpack and initialize the bootstrap compiler -- we don't
@@ -79,11 +67,11 @@ An LLVM based compiler for the D programming language.
 case $(uname -m) in
 x86_64)
 	tar xf %{S:1}
-	BOOTSTRAP_LDC="$(pwd)/ldc2-%{version}%{?beta:-%{beta}}-$(uname -s |tr A-Z a-z)-x86_64"
+	BOOTSTRAP_LDC="$(pwd)/ldc2-%{version}-$(uname -s |tr A-Z a-z)-x86_64"
 	;;
 aarch64)
 	tar xf %{S:2}
-	BOOTSTRAP_LDC="$(pwd)/ldc2-%{version}%{?beta:-%{beta}}-$(uname -s |tr A-Z a-z)-aarch64"
+	BOOTSTRAP_LDC="$(pwd)/ldc2-%{version}-$(uname -s |tr A-Z a-z)-aarch64"
 	;;
 *)
 	if which ldmd2; then
@@ -106,8 +94,7 @@ esac
 %endif
 	-G Ninja
 
-#ninja_build -j1
-ninja -j1
+%ninja_build
 
 %install
 %ninja_install -C build
