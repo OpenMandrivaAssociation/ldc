@@ -1,9 +1,9 @@
-%bcond_without	bootstrap
+%bcond_with	bootstrap
 
 Summary: LDC - the LLVM based D Compiler
 Name:		ldc
 Version:	1.36.0
-Release:	3
+Release:	4
 License:	BSD-3-clause and GPL and LLVM and Boost
 Group:		Development/Tools
 URL:		https://github.com/ldc/ldc
