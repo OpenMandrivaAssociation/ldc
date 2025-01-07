@@ -1,11 +1,13 @@
-%bcond_with	bootstrap
+%bcond bootstrap	1
 
-Summary: LDC - the LLVM based D Compiler
+%global api 110
+
+Summary:	LDC - the LLVM based D Compiler
 Name:		ldc
-Version:	1.36.0
-Release:	4
+Version:	1.40.0
+Release:	1
 License:	BSD-3-clause and GPL and LLVM and Boost
-Group:		Development/Tools
+Group:		Development/Toolsc-developersc-developers
 URL:		https://github.com/ldc/ldc
 Source0:	https://github.com/ldc-developers/ldc/releases/download/v%{version}/ldc-%{version}-src.tar.gz
 # Unfortunately all D compilers currently in existence require a
@@ -27,10 +29,10 @@ Requires:	%{mklibname druntime-ldc-shared} = %{EVRD}
 Requires:	%{mklibname phobos2-ldc-debug-shared} = %{EVRD}
 Requires:	%{mklibname phobos2-ldc-shared} = %{EVRD}
 
-%libpackage druntime-ldc-debug-shared 106
-%libpackage druntime-ldc-shared 106
-%libpackage phobos2-ldc-debug-shared 106
-%libpackage phobos2-ldc-shared 106
+%libpackage druntime-ldc-debug-shared %{api}
+%libpackage druntime-ldc-shared %{api}
+%libpackage phobos2-ldc-debug-shared %{api}
+%libpackage phobos2-ldc-shared %{api}
 
 %description
 An LLVM based compiler for the D programming language.
