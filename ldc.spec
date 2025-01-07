@@ -1,11 +1,11 @@
-%bcond bootstrap	1
+%bcond bootstrap	0
 
 %global api 110
 
 Summary:	LDC - the LLVM based D Compiler
 Name:		ldc
 Version:	1.40.0
-Release:	1
+Release:	2
 License:	BSD-3-clause and GPL and LLVM and Boost
 Group:		Development/Toolsc-developersc-developers
 URL:		https://github.com/ldc/ldc
