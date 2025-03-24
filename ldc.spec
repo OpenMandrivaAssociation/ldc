@@ -4,9 +4,11 @@
 
 Summary:	LDC - the LLVM based D Compiler
 Name:		ldc
-Version:	1.40.0
-Release:	2
-License:	BSD-3-clause and GPL and LLVM and Boost
+Version:	1.40.1
+Release:	1
+# The DMD frontend in dmd/* GPL version 1 or artistic license
+# The files gen/asmstmt.cpp and gen/asm-*.h GPL version 2+ or artistic license
+License:	BSD and GPL+ and Boost
 Group:		Development/Toolsc-developersc-developers
 URL:		https://github.com/ldc/ldc
 Source0:	https://github.com/ldc-developers/ldc/releases/download/v%{version}/ldc-%{version}-src.tar.gz
@@ -38,6 +40,8 @@ Requires:	%{mklibname phobos2-ldc-shared} = %{EVRD}
 An LLVM based compiler for the D programming language.
 
 %files
+%license LICENSE
+%doc README.md
 %{_sysconfdir}/ldc2.conf
 %{_bindir}/ldc-build-plugin
 %{_bindir}/ldc-build-runtime
@@ -53,6 +57,9 @@ An LLVM based compiler for the D programming language.
 %{_libdir}/libdruntime-ldc-shared.so
 %{_libdir}/libphobos2-ldc-debug-shared.so
 %{_libdir}/libphobos2-ldc-shared.so
+%{_libdir}/libldc-jit-rt.a
+%{_libdir}/libldc-jit.so
+%{_libdir}/libldc-jit.so.*
 %{_datadir}/bash-completion/completions/ldc2
 
 #---------------------------------------------------------------------------
