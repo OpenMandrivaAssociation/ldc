@@ -1,6 +1,6 @@
 %bcond bootstrap	1
 
-%global api 110
+%global api 111
 
 Summary:	LDC - the LLVM based D Compiler
 Name:		ldc
