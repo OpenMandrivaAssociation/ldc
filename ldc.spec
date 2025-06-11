@@ -57,9 +57,9 @@ An LLVM based compiler for the D programming language.
 %{_libdir}/libdruntime-ldc-shared.so
 %{_libdir}/libphobos2-ldc-debug-shared.so
 %{_libdir}/libphobos2-ldc-shared.so
-%{_libdir}/libldc-jit-rt.a
-%{_libdir}/libldc-jit.so
-%{_libdir}/libldc-jit.so.*
+#{_libdir}/libldc-jit-rt.a
+#{_libdir}/libldc-jit.so
+#{_libdir}/libldc-jit.so.*
 %{_datadir}/bash-completion/completions/ldc2
 
 #---------------------------------------------------------------------------
