@@ -1,11 +1,11 @@
-%bcond bootstrap	0
+%bcond bootstrap	1
 
-%global api 110
+%global api 111
 
 Summary:	LDC - the LLVM based D Compiler
 Name:		ldc
-Version:	1.40.1
-Release:	2
+Version:	1.41.0
+Release:	1
 # The DMD frontend in dmd/* GPL version 1 or artistic license
 # The files gen/asmstmt.cpp and gen/asm-*.h GPL version 2+ or artistic license
 License:	BSD and GPL+ and Boost
@@ -57,9 +57,9 @@ An LLVM based compiler for the D programming language.
 %{_libdir}/libdruntime-ldc-shared.so
 %{_libdir}/libphobos2-ldc-debug-shared.so
 %{_libdir}/libphobos2-ldc-shared.so
-%{_libdir}/libldc-jit-rt.a
-%{_libdir}/libldc-jit.so
-%{_libdir}/libldc-jit.so.*
+#{_libdir}/libldc-jit-rt.a
+#{_libdir}/libldc-jit.so
+#{_libdir}/libldc-jit.so.*
 %{_datadir}/bash-completion/completions/ldc2
 
 #---------------------------------------------------------------------------
