@@ -4,8 +4,8 @@
 
 Summary:	LDC - the LLVM based D Compiler
 Name:		ldc
-Version:	1.40.1
-Release:	2
+Version:	1.41.0
+Release:	1
 # The DMD frontend in dmd/* GPL version 1 or artistic license
 # The files gen/asmstmt.cpp and gen/asm-*.h GPL version 2+ or artistic license
 License:	BSD and GPL+ and Boost
