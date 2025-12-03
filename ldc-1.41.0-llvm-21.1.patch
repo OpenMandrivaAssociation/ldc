@@ -1,0 +1,11 @@
+diff -ru ldc-1.41.0-src.orig/runtime/druntime/src/ldc/intrinsics.di ldc-1.41.0-src/runtime/druntime/src/ldc/intrinsics.di
+--- ldc-1.41.0-src.orig/runtime/druntime/src/ldc/intrinsics.di	2025-12-03 19:00:36.296787382 +0100
++++ ldc-1.41.0-src/runtime/druntime/src/ldc/intrinsics.di	2025-12-03 19:01:31.834287745 +0100
+@@ -27,6 +27,7 @@
+ else version (LDC_LLVM_1901) enum LLVM_version = 1901;
+ else version (LDC_LLVM_2001) enum LLVM_version = 2001;
+ else version (LDC_LLVM_2100) enum LLVM_version = 2100;
++else version (LDC_LLVM_2101) enum LLVM_version = 2101;
+ else static assert(false, "LDC LLVM version not supported");
+ 
+ enum LLVM_atleast(int major) = (LLVM_version >= major * 100);

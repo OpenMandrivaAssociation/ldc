@@ -1,0 +1,15 @@
+diff -ru ldc-1.41.0-src.orig/CMakeLists.txt ldc-1.41.0-src/CMakeLists.txt
+--- ldc-1.41.0-src.orig/CMakeLists.txt	2025-12-03 18:50:52.670333530 +0100
++++ ldc-1.41.0-src/CMakeLists.txt	2025-12-03 18:51:33.090777851 +0100
+@@ -634,10 +634,7 @@
+     if(APPLE)
+         # LLD 13.0.0 on Mac needs libxar
+         list(APPEND LDC_LINKERFLAG_LIST -lxar)
+-    endif()
+-    if(${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
+-        # FreeBSD LLVM port links to zstd, but does not convey this information via CMake
+-        # Workaround it here until it is fixed in the port
++    else()
+         find_package(zstd)
+         list(APPEND LDC_LINKERFLAG_LIST "$<TARGET_LINKER_FILE:zstd::libzstd_shared>")
+     endif()
