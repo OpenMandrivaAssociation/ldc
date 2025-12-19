@@ -1,25 +1,24 @@
 %bcond bootstrap	0
 
-%global api 111
+%global api 112
 
 Summary:	LDC - the LLVM based D Compiler
 Name:		ldc
-Version:	1.41.0
-Release:	4
+Version:	1.42.0_beta1
+%define realver %(echo %{version} | tr '_' '-')
+Release:	1
 # The DMD frontend in dmd/* GPL version 1 or artistic license
 # The files gen/asmstmt.cpp and gen/asm-*.h GPL version 2+ or artistic license
 License:	BSD and GPL+ and Boost
 Group:		Development/Toolsc-developersc-developers
 URL:		https://github.com/ldc/ldc
-Source0:	https://github.com/ldc-developers/ldc/releases/download/v%{version}/ldc-%{version}-src.tar.gz
+Source0:	https://github.com/ldc-developers/ldc/releases/download/v%{realver}/ldc-%{realver}-src.tar.gz
 # Unfortunately all D compilers currently in existence require a
 # D compiler to build -- so we have to start with downloading a
 # prebuilt binary.
-Source1:	https://github.com/ldc-developers/ldc/releases/download/v%{version}/ldc2-%{version}-linux-x86_64.tar.xz
-Source2:	https://github.com/ldc-developers/ldc/releases/download/v%{version}/ldc2-%{version}-linux-aarch64.tar.xz
+Source1:	https://github.com/ldc-developers/ldc/releases/download/v%{realver}/ldc2-%{realver}-linux-x86_64.tar.xz
+Source2:	https://github.com/ldc-developers/ldc/releases/download/v%{realver}/ldc2-%{realver}-linux-aarch64.tar.xz
 Patch0:	ldc-1.41.0-linkage.patch
-Patch1:	4950.patch
-Patch2:	ldc-1.41.0-llvm-21.1.patch
 BuildRequires:	cmake ninja
 BuildRequires:	cmake(LLVM)
 %if %{without bootstrap}
@@ -48,8 +47,8 @@ An LLVM based compiler for the D programming language.
 %{_sysconfdir}/ldc2.conf
 %{_bindir}/ldc-build-plugin
 %{_bindir}/ldc-build-runtime
-#{_bindir}/ldc-profdata
-#{_bindir}/ldc-profgen
+%{_bindir}/ldc-profdata
+%{_bindir}/ldc-profgen
 %{_bindir}/ldc-prune-cache
 %{_bindir}/ldc2
 %{_bindir}/ldmd2
@@ -68,7 +67,7 @@ An LLVM based compiler for the D programming language.
 #---------------------------------------------------------------------------
 
 %prep
-%autosetup -p1 -n %{name}-%{version}-src
+%autosetup -p1 -n %{name}-%{realver}-src
 
 %build
 # Unpack and initialize the bootstrap compiler -- we don't
@@ -79,11 +78,11 @@ An LLVM based compiler for the D programming language.
 case $(uname -m) in
 x86_64)
 	tar xf %{S:1}
-	BOOTSTRAP_LDC="$(pwd)/ldc2-%{version}-$(uname -s |tr A-Z a-z)-x86_64"
+	BOOTSTRAP_LDC="$(pwd)/ldc2-%{realver}-$(uname -s |tr A-Z a-z)-x86_64"
 	;;
 aarch64)
 	tar xf %{S:2}
-	BOOTSTRAP_LDC="$(pwd)/ldc2-%{version}-$(uname -s |tr A-Z a-z)-aarch64"
+	BOOTSTRAP_LDC="$(pwd)/ldc2-%{realver}-$(uname -s |tr A-Z a-z)-aarch64"
 	;;
 *)
 	if which ldmd2; then

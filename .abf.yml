@@ -1,4 +1,4 @@
 sources:
-  ldc-1.41.0-src.tar.gz: 3c29211ce400d70f9551b9017a0b67c932d85e72
-  ldc2-1.41.0-linux-aarch64.tar.xz: 26932d6cb2eaebc18ca69b7d75c06ff78514a786
-  ldc2-1.41.0-linux-x86_64.tar.xz: 7c2c6634cebcd6ceedc3e7f0178b8f4fb84686d6
+  ldc-1.42.0-beta1-src.tar.gz: 087c20007ee99adf8aade9e6fb397192cae1ef73
+  ldc2-1.42.0-beta1-linux-aarch64.tar.xz: 7fbdce83244333e2f867c3159a8fea4fdfdd1ae0
+  ldc2-1.42.0-beta1-linux-x86_64.tar.xz: 0a548c9f36bf38b141c6d1f70055c056e0907db6
