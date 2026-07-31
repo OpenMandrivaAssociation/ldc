@@ -4,7 +4,7 @@
 
 Summary:	LDC - the LLVM based D Compiler
 Name:		ldc
-Version:	1.42.0_beta1
+Version:	1.42
 %define realver %(echo %{version} | tr '_' '-')
 Release:	1
 # The DMD frontend in dmd/* GPL version 1 or artistic license
@@ -67,7 +67,7 @@ An LLVM based compiler for the D programming language.
 #---------------------------------------------------------------------------
 
 %prep
-%autosetup -p1 -n %{name}-%{realver}-src
+%autosetup -p1 -n ldc-1.42.0
 
 %build
 # Unpack and initialize the bootstrap compiler -- we don't
