@@ -1,4 +1,4 @@
-%bcond bootstrap	1
+%bcond bootstrap	0
 
 %global api 113
 
