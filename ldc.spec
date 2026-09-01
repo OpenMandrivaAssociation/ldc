@@ -1,24 +1,23 @@
-%bcond bootstrap	0
+%bcond bootstrap	1
 
-%global api 112
+%global api 113
 
 Summary:	LDC - the LLVM based D Compiler
 Name:		ldc
-Version:	1.42
+Version:	1.43.0
 %define realver %(echo %{version} | tr '_' '-')
 Release:	1
 # The DMD frontend in dmd/* GPL version 1 or artistic license
 # The files gen/asmstmt.cpp and gen/asm-*.h GPL version 2+ or artistic license
 License:	BSD and GPL+ and Boost
-Group:		Development/Toolsc-developersc-developers
-URL:		https://github.com/ldc/ldc
+Group:		Development/Tools
+URL:		https://github.com/ldc-developers/ldc
 Source0:	https://github.com/ldc-developers/ldc/releases/download/v%{realver}/ldc-%{realver}-src.tar.gz
 # Unfortunately all D compilers currently in existence require a
 # D compiler to build -- so we have to start with downloading a
 # prebuilt binary.
 Source1:	https://github.com/ldc-developers/ldc/releases/download/v%{realver}/ldc2-%{realver}-linux-x86_64.tar.xz
 Source2:	https://github.com/ldc-developers/ldc/releases/download/v%{realver}/ldc2-%{realver}-linux-aarch64.tar.xz
-Patch0:	ldc-1.41.0-linkage.patch
 BuildRequires:	cmake ninja
 BuildRequires:	cmake(LLVM)
 %if %{without bootstrap}
@@ -26,12 +25,13 @@ BuildRequires:	ldc
 %endif
 BuildRequires:	llvm-static-devel
 BuildRequires:	pkgconfig(libzstd)
-BuildRequires:	pkgconfig(bash-completion)
 
 Requires:	%{mklibname druntime-ldc-debug-shared} = %{EVRD}
 Requires:	%{mklibname druntime-ldc-shared} = %{EVRD}
 Requires:	%{mklibname phobos2-ldc-debug-shared} = %{EVRD}
 Requires:	%{mklibname phobos2-ldc-shared} = %{EVRD}
+# ldc-profdata / ldc-profgen are the system LLVM tools; 1.43 has no LLVM 23 copies
+Requires:	llvm
 
 %libpackage druntime-ldc-debug-shared %{api}
 %libpackage druntime-ldc-shared %{api}
@@ -44,7 +44,8 @@ An LLVM based compiler for the D programming language.
 %files
 %license LICENSE
 %doc README.md
-%{_sysconfdir}/ldc2.conf
+%dir %{_sysconfdir}/ldc2.conf
+%config(noreplace) %{_sysconfdir}/ldc2.conf/*
 %{_bindir}/ldc-build-plugin
 %{_bindir}/ldc-build-runtime
 %{_bindir}/ldc-profdata
@@ -59,15 +60,12 @@ An LLVM based compiler for the D programming language.
 %{_libdir}/libdruntime-ldc-shared.so
 %{_libdir}/libphobos2-ldc-debug-shared.so
 %{_libdir}/libphobos2-ldc-shared.so
-#{_libdir}/libldc-jit-rt.a
-#{_libdir}/libldc-jit.so
-#{_libdir}/libldc-jit.so.*
 %{_datadir}/bash-completion/completions/ldc2
 
 #---------------------------------------------------------------------------
 
 %prep
-%autosetup -p1 -n ldc-1.42.0
+%autosetup -p1 -n ldc-%{realver}-src
 
 %build
 # Unpack and initialize the bootstrap compiler -- we don't
@@ -99,6 +97,8 @@ esac
 
 %cmake -Wno-dev \
 	-DBUILD_LTO_LIBS:BOOL=OFF \
+	-DLDC_BUNDLE_LLVM_TOOLS:BOOL=OFF \
+	-DBASH_COMPLETION_COMPLETIONSDIR=%{_datadir}/bash-completion/completions \
 	-DLLVM_CONFIG:PATH=llvm-config \
 %if %{with bootstrap}
 	-DD_COMPILER=${BOOTSTRAP_LDC}/bin/ldmd2 \
@@ -109,4 +109,6 @@ esac
 
 %install
 %ninja_install -C build
-
+# 1.43 has no LLVM 23 copies of these tools; use the system LLVM ones
+ln -s llvm-profdata %{buildroot}%{_bindir}/ldc-profdata
+ln -s llvm-profgen %{buildroot}%{_bindir}/ldc-profgen
